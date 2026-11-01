@@ -105,12 +105,8 @@ def validate(face_print):
     stored_faces = grab_faces()
     current_print = np.array(face_print, dtype=np.float64)
 
-    for stored in stored_faces:
-        # Parse stored face print from CSV (format: "[list] | timestamp")
-        parts = stored.split(' | ')
-        if len(parts) < 1:
-            continue
-        stored_print = np.array(eval(parts[0]), dtype=np.float64)
+    for stored_print in stored_faces:
+        stored_print = np.array(stored_print, dtype=np.float64)
 
         # Normalize both vectors to handle lighting differences
         stored_norm = np.linalg.norm(stored_print)
